@@ -104,4 +104,14 @@ public class SeqList extends LinearList {
         }
         System.out.println();
     }
+
+    @Override
+    public void clear() {
+        for(int i=0;i<n;i++)
+        {
+            elements[i] = null;
+        }
+        System.out.println("clear ok");
+        n=0;
+    }
 }

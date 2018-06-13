@@ -13,4 +13,5 @@ public abstract class LinearList {
     public abstract boolean delete(int i);
     public abstract boolean update(int i,Object x);
     public abstract void output();
+    public abstract void clear();
 }
