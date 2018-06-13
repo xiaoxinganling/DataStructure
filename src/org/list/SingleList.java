@@ -3,32 +3,8 @@
  */
 package org.list;
 
-/**
- * 单链表节点
- */
-class Node
-{
-    private Object element;
-    private Node next;
-
-    public Object getElement() {
-        return element;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public void setElement(Object element) {
-        this.element = element;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
-    }
-}
 public class SingleList extends LinearList{
-    private Node first;
+    protected Node first;
 
     public SingleList(){
         first = null;
