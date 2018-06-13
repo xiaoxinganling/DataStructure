@@ -1,3 +1,6 @@
+/**
+ * 顺序表
+ */
 package org.list;
 
 public class SeqList extends LinearList {

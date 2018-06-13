@@ -1,5 +1,7 @@
+/**
+ * 线性表ADT
+ */
 package org.list;
-
 public abstract class LinearList {
     protected int n;//
 

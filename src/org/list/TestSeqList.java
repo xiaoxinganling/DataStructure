@@ -1,3 +1,6 @@
+/**
+ * 测试顺序表基本功能
+ */
 package org.list;
 
 import java.util.Scanner;
