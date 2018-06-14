@@ -1,3 +1,6 @@
+/**
+ * 带表头的单链表
+ */
 package org.list.inner;
 
 import org.list.Node;

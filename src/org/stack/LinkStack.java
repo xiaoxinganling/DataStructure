@@ -1,6 +1,8 @@
+/**
+ * 使用链表实现的栈--链接栈
+ */
 package org.stack;
 
-import org.list.LinearList;
 import org.list.Node;
 
 public class LinkStack extends Stack {

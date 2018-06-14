@@ -1,3 +1,6 @@
+/**
+ * 测试链接栈
+ */
 package org.stack;
 
 public class TestLinkStack {

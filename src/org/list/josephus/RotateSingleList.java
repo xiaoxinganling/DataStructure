@@ -1,3 +1,6 @@
+/**
+ * 不带表头的循环单链表
+ */
 package org.list.josephus;
 
 import org.list.Node;

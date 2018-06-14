@@ -1,21 +1,21 @@
 /**
- * 测试顺序栈
+ * 测试类
  */
-package org.stack;
+package org.queue;
 
 import java.util.Scanner;
 
 public class TestClass {
     public static void main(String[] args) {
-        SeqStack s = new SeqStack(10);
-        testStack(s);
+        //testSeqQueue();
+        testLinkQueue();
     }
     public static void printMenu()
     {
-        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n","please input:","1.top",
-                "2.push","3.pop","4.clear","5.quit");
+        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n","please input:","1.front",
+                "2.enQueue","3.deQueue","4.clear","5.quit");
     }
-    public static void testStack(Stack stack)
+    public static void testQueue(Queue queue)
     {
         Scanner in = new Scanner(System.in);
         while(true)
@@ -24,20 +24,20 @@ public class TestClass {
             String s = in.nextLine();
             if(s.equals("1"))
             {
-                System.out.println(stack.top());
+                System.out.println(queue.front());
             }
             else if(s.equals("2"))
             {
                 System.out.print("please input item:");
-                System.out.println(stack.push(in.nextLine()));
+                System.out.println(queue.enQueue(in.nextLine()));
             }
             else if(s.equals("3"))
             {
-                System.out.println(stack.pop());
+                System.out.println(queue.deQueue());
             }
             else if(s.equals("4"))
             {
-                stack.clear();
+                queue.clear();
             }
             else if(s.equals("5"))
             {
@@ -45,4 +45,15 @@ public class TestClass {
             }
         }
     }
+    public static void testSeqQueue()
+    {
+        SeqQueue q = new SeqQueue(10);
+        testQueue(q);
+    }
+    public static void testLinkQueue()
+    {
+        LinkQueue lq = new LinkQueue();
+        testQueue(lq);
+    }
 }
+

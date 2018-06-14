@@ -1,3 +1,6 @@
+/**
+ * 栈ADT
+ */
 package org.stack;
 
 public abstract class Stack  {

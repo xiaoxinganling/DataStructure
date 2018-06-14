@@ -1,3 +1,6 @@
+/**
+ * 顺序栈
+ */
 package org.stack;
 
 public class SeqStack extends Stack {

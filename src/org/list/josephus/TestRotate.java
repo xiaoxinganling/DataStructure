@@ -1,6 +1,7 @@
+/**
+ * 测试约瑟夫环问题的解决方案
+ */
 package org.list.josephus;
-
-import org.list.TestSeqList;
 
 public class TestRotate {
     public static void main(String[] args) {

@@ -1,3 +1,6 @@
+/**
+ * 使用单链表解决两个集合的交集问题
+ */
 package org.list;
 
 public class InterSectionSingleList {

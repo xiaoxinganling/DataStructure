@@ -1,6 +1,7 @@
+/**
+ * 测试单链表基本功能
+ */
 package org.list;
-
-import java.util.Scanner;
 
 public class TestSingleList {
     public static void main(String[] args) {
