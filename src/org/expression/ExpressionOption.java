@@ -4,10 +4,7 @@
 package org.expression;
 
 import org.stack.SeqStack;
-import org.stack.Stack;
-
 import java.util.HashMap;
-import java.util.Map;
 
 public class ExpressionOption {
     //栈外操作符优先级
