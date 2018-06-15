@@ -1,6 +1,7 @@
+/**
+ * 测试二叉树类
+ */
 package org.tree;
-
-import org.list.Node;
 
 public class TestBinaryTree {
     //step 1
