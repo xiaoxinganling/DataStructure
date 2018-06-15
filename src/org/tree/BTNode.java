@@ -12,6 +12,12 @@ public class BTNode {
         this.element = element;
     }
 
+    public BTNode(Object element, BTNode lChild, BTNode rChild) {
+        this.element = element;
+        this.lChild = lChild;
+        this.rChild = rChild;
+    }
+
     public Object getElement() {
         return element;
     }
