@@ -35,8 +35,9 @@ public class TestBinaryTree {
         newTree.setRoot(copy(z.getRoot()));
         newTree.doInOrder();
         System.out.println();
-        clear(newTree.getRoot());
-        newTree.doInOrder();
+//        clear(newTree.getRoot());
+//        newTree.doInOrder();
+        newTree.doHierarchy();
     }
 
     public static void doPrint() {

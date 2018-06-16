@@ -3,12 +3,14 @@
  */
 package org.tree;
 
+import org.queue.SeqQueue;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BinaryTree {
     private BTNode root;
-
+    private SeqQueue queue;
     public BTNode getRoot() {
         return root;
     }
@@ -84,6 +86,26 @@ public class BinaryTree {
         postOrder(root.getlChild());
         postOrder(root.getrChild());
         System.out.print(root.getElement()+" ");
+    }
+    public void doHierarchy(){
+        queue = new SeqQueue(getSize());
+        queue.enQueue(root);
+        hierarchy();
+    }
+    private void hierarchy()
+    {
+        while(!queue.isEmpty())
+        {
+            BTNode parent = (BTNode) queue.front();
+            System.out.print(parent.getElement()+" ");
+            BTNode left = parent.getlChild();
+            BTNode right = parent.getrChild();
+            if(left!=null)
+                queue.enQueue(left);
+            if(right!=null)
+                queue.enQueue(right);
+            queue.deQueue();
+        }
     }
     public int getSize()
     {

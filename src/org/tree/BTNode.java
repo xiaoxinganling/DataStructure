@@ -41,4 +41,9 @@ public class BTNode {
     public void setrChild(BTNode rChild) {
         this.rChild = rChild;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf("BTNode_"+element);
+    }
 }
