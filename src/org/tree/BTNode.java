@@ -18,6 +18,9 @@ public class BTNode {
         this.rChild = rChild;
     }
 
+    public BTNode() {
+    }
+
     public Object getElement() {
         return element;
     }
