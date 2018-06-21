@@ -1,4 +1,4 @@
-/**
+/*
  * Extent Link Graph
  */
 package org.graph;
@@ -190,6 +190,51 @@ public class ExtLGraph extends LGraph{
             }
         }
         return res;
+    }
+    //最小生成树Prim算法
+    public void prim(int k,int[] nearest,int[] lowcost)//k：开始节点下标,nearest,lowcost：生成树外某一顶点到生成树最小距离的顶点下标和长度
+    {
+        if(k<0||k>n-1){
+            System.out.println("OutOfBounds");
+            return;
+        }
+        //初始化
+        boolean[] marked = new boolean[n];
+        for(int i=0;i<n;i++)
+        {
+            nearest[i] = -1;
+            lowcost[i] = Integer.MAX_VALUE;
+        }
+        //将起点放入生成树
+        nearest[k] = k;
+        lowcost[k] = 0;
+        marked[k] = true;
+        //将剩余顶点放入生成树
+        for(int i=1;i<n;i++)
+        {
+            ENode p = a[k];
+            while(p!=null)
+            {
+                if(!marked[p.getAdjVex()]&&p.getW()<lowcost[p.getAdjVex()])
+                {
+                    nearest[p.getAdjVex()] = k;
+                    lowcost[p.getAdjVex()] = p.getW();
+                }
+                p = p.getNextArc();
+            }
+            //找到还没放进生成树中的顶点lowcost的最小值
+            int min = Integer.MAX_VALUE;
+            for(int j=0;j<n;j++)
+            {
+                if(!marked[j]&&lowcost[j]<min)
+                {
+                    min = lowcost[j];
+                    k = j;
+                }
+            }
+            //找到了,下标为k,将k放入生成树中
+            marked[k] = true;
+        }
     }
 }
 
