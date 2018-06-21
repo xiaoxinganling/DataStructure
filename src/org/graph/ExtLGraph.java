@@ -3,6 +3,7 @@
  */
 package org.graph;
 
+import org.graph.criticalpath.Edge;
 import org.queue.SeqQueue;
 
 import java.util.ArrayList;
@@ -126,6 +127,69 @@ public class ExtLGraph extends LGraph{
                 p = p.getNextArc();
             }
         }
+    }
+    //计算事件(点)可能的最早发生时间
+    public int[] earliest()
+    {
+        List<Integer> topoList = topoSort();
+        int[] earliest = new int[n];
+        for(int i=0;i<topoList.size();i++)
+        {
+            int k = topoList.get(i);
+            ENode p = a[k];
+            while(p!=null)
+            {
+                if(earliest[k]+p.getW()>earliest[p.getAdjVex()])
+                {
+                    earliest[p.getAdjVex()] = earliest[k]+p.getW();
+                }
+                p = p.getNextArc();
+            }
+        }
+        return earliest;
+    }
+    //计算事件(点)允许的最迟发生时间
+    public int[] latest()
+    {
+        int[] earliest = earliest();
+        List<Integer> topoList = topoSort();
+        int[] latest = new int[n];
+        for(int i=0;i<latest.length;i++)
+        {
+            latest[i] = earliest[n-1];
+        }
+        for(int i=topoList.size()-1;i>=0;i--)
+        {
+            int k = topoList.get(i);
+            ENode p = a[k];
+            while(p!=null)
+            {
+                if(latest[p.getAdjVex()]-p.getW()<latest[k])
+                    latest[k] = latest[p.getAdjVex()]-p.getW();
+                p = p.getNextArc();
+            }
+        }
+        return latest;
+    }
+    //计算活动(边)的early和late
+    public List<Edge> getKeyAct(int[] earliest,int[] latest)
+    {
+        List<Edge> res = new ArrayList<>();
+        for(int i=0;i<a.length;i++)
+        {
+            ENode p = a[i];
+            while(p!=null)
+            {
+                Edge e = new Edge();
+                e.setLate(i);
+                e.setRight(p.getAdjVex());
+                e.setEarly(earliest[i]);
+                e.setLate(latest[p.getAdjVex()]-p.getW());
+                res.add(e);
+                p = p.getNextArc();
+            }
+        }
+        return res;
     }
 }
 
