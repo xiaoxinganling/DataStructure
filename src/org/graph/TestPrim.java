@@ -24,5 +24,11 @@ public class TestPrim {
         Utils.doWriteLine();
         for(int i:lowcost)
             System.out.print(i+" ");
+        Utils.doWriteLine();
+        for(int i=0;i<nearest.length;i++)
+        {
+            if(i!=nearest[i])
+                System.out.println(i+"————"+nearest[i]);
+        }
     }
 }
