@@ -3,7 +3,6 @@
  */
 package org.searchtree;
 
-import org.queue.SeqQueue;
 import org.tree.BTNode;
 
 public class BSTree {

@@ -5,6 +5,9 @@ package org.graph;
 
 import org.queue.SeqQueue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExtLGraph extends LGraph{
     public ExtLGraph(int mSize) {
         super(mSize);
@@ -63,6 +66,63 @@ public class ExtLGraph extends LGraph{
                     isVisited[p.getAdjVex()] = true;
                     sq.enQueue(p.getAdjVex());
                 }
+                p = p.getNextArc();
+            }
+        }
+    }
+    //拓扑排序
+    public List<Integer> topoSort()
+    {
+        List<Integer> res = new ArrayList<>();
+        int[] inDegree = new int[n];
+        calInDegree(inDegree);
+        int top = -1;
+        for(int i=0;i<n;i++)//入度为0的顶点入栈
+        {
+            if(inDegree[i]==0)
+            {
+                inDegree[i] = top;
+                top = i;
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(top==-1)
+            {
+                System.out.println("Has Cycle");
+                return null;
+            }
+            else
+            {
+                int tmp = top;
+                top = inDegree[top];
+                System.out.print(tmp+" ");
+                res.add(tmp);
+                ENode p = a[tmp];
+                while (p!=null)
+                {
+                    int k = p.getAdjVex();
+                    inDegree[k]--;
+                    if(inDegree[k]==0)
+                    {
+                        inDegree[k] = top;
+                        top = k;
+                    }
+                    p = p.getNextArc();
+                }
+            }
+        }
+        return res;
+    }
+    //计算各顶点的入度
+    private void calInDegree(int[] inDegree)
+    {
+        for(int i=0;i<n;i++)
+        {
+            ENode p = a[i];
+            while(p!=null)
+            {
+                inDegree[p.getAdjVex()]++;
                 p = p.getNextArc();
             }
         }

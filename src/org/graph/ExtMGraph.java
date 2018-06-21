@@ -1,3 +1,6 @@
+/**
+ * Extent Matrix Graph
+ */
 package org.graph;
 
 import org.queue.SeqQueue;
