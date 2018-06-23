@@ -1,3 +1,6 @@
+/**
+ * 实现散列表并进行测试
+ */
 package org.hashtable;
 
 import org.utils.Utils;
@@ -93,5 +96,21 @@ public class HashTable {
         for(int i=0;i<m;i++)
             System.out.print(" "+ht[i]);
         Utils.doWriteLine();
+    }
+    public static void main(String[] args) {
+        HashTable ht = new HashTable(11);
+        ht.insert(80);
+        ht.insert(40);
+        ht.insert(65);
+        ht.show();
+        ht.insert(58);
+        ht.insert(24);
+        ht.show();
+        ht.insert(35);
+        ht.show();
+        ht.remove(58);
+        ht.show();
+        ht.insert(48);
+        ht.show();
     }
 }
