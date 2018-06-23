@@ -49,9 +49,10 @@ public class SortAlgorithm {
         int last = 0;
         while(boundary>0)
         {
+            last = 0;//要记得在进入循环时将last初始化为0,否则当没有swap操作时,last不会改变将陷入死循环
+
             for(int i=0;i<boundary;i++)
             {
-                last = 0;//要记得在进入循环时将last初始化为0,否则当没有swap操作时,last不会改变将陷入死循环
                 if(nums[i]>nums[i+1])
                 {
                     int tmp = nums[i+1];
@@ -64,8 +65,37 @@ public class SortAlgorithm {
             boundary = last;//使用了一个状态变量对算法进行了优化,在这种情况下,可以避免一些不必要的计算
         }
     }
-    //
-
+    //快速排序
+    public static void quickSort(int left,int right,int[] nums)
+    {
+        int part = partition(left,right,nums);
+        if(part>left+1)
+            quickSort(left,part-1,nums);
+        if(part<right-1)
+            quickSort(part+1,right,nums);
+    }
+    //partition函数
+    public static int partition(int i,int j,int[] nums)
+    {
+        int tmp = nums[i];
+        int left = i;
+        while(i<j)
+        {
+            while(nums[j]>=tmp&&i<j)
+                j--;
+            while(nums[i]<=tmp&&i<j)//这里不能加等于号
+                i++;
+            if(i<j)
+            {
+                int a = nums[j];
+                nums[j] = nums[i];
+                nums[i] = a;
+            }
+        }
+        nums[left] = nums[i];
+        nums[i] = tmp;
+        return i;
+    }
     public static void show(int[] nums)
     {
         for(int i: nums)
@@ -74,13 +104,21 @@ public class SortAlgorithm {
     }
     public static void main(String[] args) {
         int[] nums = {48,36,68,72,12,48,2};
-        int[] nums2 = {2,12,48,36,72,68,48};
         //test Simple Sort
         //simpleSort(nums);
+
         //test Insert Sort
         //insertSort(nums);
+
         //test Bubblel Sort
-        bubbleSort(nums2);
-        show(nums2);
+        //int[] nums2 = {2,12,48,36,72,68,48};
+        //bubbleSort(nums2);
+
+        //test quickSort
+//        int[] nums2 = {17,485,59,73,50,475,49,66,89,440,75,119,120,187,79};
+//        quickSort(0,nums2.length-1,nums2);
+//        show(nums2);
+
+
     }
 }
