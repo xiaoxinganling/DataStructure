@@ -138,6 +138,38 @@ public class SortAlgorithm {
         for(i = 0;i<k;i++)
             nums[i1++] = tmp[i];//此处不是nums[i] = tmp[i],因为归并的起点是i1
     }
+    //堆排序
+    public static void heapSort(int[] nums)
+    {
+        int len = nums.length;
+        //create heap
+        for(int i= (len-2)/2;i>=0;i--)
+            adjustDown(nums,i,len-1);
+        //sort
+        for(int i=len-1;i>0;i--)
+        {
+            int tmp = nums[i];
+            nums[i] = nums[0];
+            nums[0] = tmp;
+            adjustDown(nums,0,i-1);
+        }
+    }
+    //堆排序辅助:adjustDown函数(此处为构建最大堆的adjustDown函数,与package minheap中的adjustDown函数有略微差异)
+    private static void adjustDown(int[] nums,int r,int j)//r未成最大堆,[r-1,j]已成最大堆,因此向下调整
+    {
+        int tmp = nums[r];
+        int child = 2*r+1;
+        while(child<=j)
+        {
+            if(child<j&&nums[child+1]>nums[child])//child<j写在前面,否则会出现array out of bounds的错误
+                child++;
+            if(tmp>=nums[child])//tmp已经更大了
+                break;
+            nums[(child-1)/2] = nums[child];
+            child = 2*child +1;
+        }
+        nums[(child-1)/2] = tmp;
+    }
     //打印数组
     public static void show(int[] nums)
     {
@@ -164,8 +196,11 @@ public class SortAlgorithm {
 //        show(nums2);
 
         //test mergeSort
-        mergeSort(nums);
-        show(nums);
+        //mergeSort(nums);
+        //show(nums);
 
+        //test heapSort
+        heapSort(nums);
+        show(nums);
     }
 }
