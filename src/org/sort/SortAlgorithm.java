@@ -74,8 +74,8 @@ public class SortAlgorithm {
         if(part<right-1)
             quickSort(part+1,right,nums);
     }
-    //partition函数
-    public static int partition(int i,int j,int[] nums)
+    //快速排序辅助：partition函数
+    private static int partition(int i,int j,int[] nums)
     {
         int tmp = nums[i];
         int left = i;
@@ -96,12 +96,56 @@ public class SortAlgorithm {
         nums[i] = tmp;
         return i;
     }
+    //归并排序
+    public static void mergeSort(int[] nums)
+    {
+        int size = 1;
+        int len = nums.length;
+        while(size<len)
+        {
+            int i1 = 0;
+            while(i1+size<len)
+            {
+                int i2 = i1 + size;
+                int j1 = i2 -1;
+                int j2 = j1+size;
+                if(j1+size>=len)
+                    j2 = len-1;
+                merge(nums,i1,j1,i2,j2);
+                i1 = j2 + 1;
+            }
+            size*=2;
+        }
+    }
+    //归并排序辅助：归并两个数组
+    private static void merge(int[] nums,int i1,int j1,int i2,int j2)//归并nums数组的[i1,j1]和[i2,j2]两个区间
+    {
+        int[] tmp = new int[j2-i1+1];//辅助数组
+        int i = i1;
+        int j = i2;
+        int k = 0;
+        while(i<=j1&&j<=j2)
+        {
+            if(nums[i]<=nums[j])
+                tmp[k++] = nums[i++];
+            else
+                tmp[k++] = nums[j++];
+        }
+        while(i<=j1)
+            tmp[k++] = nums[i++];
+        while(j<=j2)
+            tmp[k++] = nums[j++];
+        for(i = 0;i<k;i++)
+            nums[i1++] = tmp[i];//此处不是nums[i] = tmp[i],因为归并的起点是i1
+    }
+    //打印数组
     public static void show(int[] nums)
     {
         for(int i: nums)
             System.out.print(" "+i);
         Utils.doWriteLine();
     }
+    //测试main函数
     public static void main(String[] args) {
         int[] nums = {48,36,68,72,12,48,2};
         //test Simple Sort
@@ -119,6 +163,9 @@ public class SortAlgorithm {
 //        quickSort(0,nums2.length-1,nums2);
 //        show(nums2);
 
+        //test mergeSort
+        mergeSort(nums);
+        show(nums);
 
     }
 }
